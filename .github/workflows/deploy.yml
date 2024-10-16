@@ -1,0 +1,35 @@
+name: Run Upload Script
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    upload_job:
+        runs-on: self-hosted
+        environment: deploy-xeqto
+
+        steps:
+            - name: Cleanup
+              run: |
+                  rm -rf ./node_modules || true
+                  rm -rf ./dist || true
+                  rm -rf ./out || true  # Add any other directories where compiled files might be
+                  rm -rf ./* || true
+                  rm -rf ./.??* || true
+                  rm -f package-lock.json || true
+
+            - uses: actions/checkout@v2
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Compile TypeScript to Lua
+              run: npm run build
+
+            - name: Run upload script
+              env:
+                  ROBLOSECURITY: ${{ secrets.ROBLOSECURITY }}
+              run: |
+                  ./upload.bash

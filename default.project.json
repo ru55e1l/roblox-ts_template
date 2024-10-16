@@ -1,0 +1,35 @@
+{
+	"name": "roblox-ts-game",
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json"
+	],
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"hyperdriveAsset": { 
+				"$className": "Model",
+				"rbxts_include": {
+					"$path": "include",
+					"node_modules": {
+						"$className": "Folder",
+						"@rbxts": {
+							"$path": "node_modules/@rbxts"
+						}
+					}
+				},
+				"hyperdrive": {
+					"$path": "out/hyperdrive"
+				}
+			}
+		},
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"hyperdriveStartup": { 
+				"$className": "Folder",
+				"$path": "out/hyperdriveStartup" 
+			}
+		}
+	}
+}
