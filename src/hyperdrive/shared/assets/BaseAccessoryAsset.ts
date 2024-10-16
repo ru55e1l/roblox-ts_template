@@ -1,3 +1,4 @@
+import { ReplicatedFirst, ReplicatedStorage } from "@rbxts/services";
 import { BaseAsset, BaseAssetInput } from "./BaseAsset";
 
 abstract class BaseAccessoryAsset extends BaseAsset {
@@ -6,10 +7,16 @@ abstract class BaseAccessoryAsset extends BaseAsset {
 	}
 
 	// Assumes that the model only has an accessory
-	public Get(parent?: Instance): Instance {
-		const model = super.Get(parent);
+	public static Get(): Instance {
+		const model = super.Get();
 
 		const accessory = model.FindFirstChildWhichIsA("Accessory") as Accessory;
+
+		// Cleanup unneccesary stuff
+		accessory.Parent = ReplicatedStorage;
+		model.Destroy();
+
+		this.loadedAsset = accessory;
 		return accessory;
 	}
 }

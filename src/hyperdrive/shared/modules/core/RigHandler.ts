@@ -1,4 +1,5 @@
-import { AssetHandler } from "./AssetHandler";
+import { Rig } from "hyperdrive/shared/assets/core/Rig";
+
 export default class RigHandler {
 	private static bodyPartEnumMap: { [key: string]: Enum.BodyPartR15 } = {
 		Head: Enum.BodyPartR15.Head,
@@ -39,7 +40,7 @@ export default class RigHandler {
 			return;
 		}
 
-		const newRig = AssetHandler.findChildByPath(["Models", "Rig", "NewRig"]);
+		const newRig = Rig.Get();
 
 		if (newRig === undefined) {
 			return;
