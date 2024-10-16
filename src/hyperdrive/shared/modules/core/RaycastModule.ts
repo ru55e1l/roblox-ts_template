@@ -23,15 +23,21 @@ class RaycastModule {
 		this.rayIgnoreList = this.rayIgnoreList.filter((instance) => instance.Parent !== undefined);
 	}
 
-	static addModelDescendantsToIgnoreList(instance: Instance): void {
+	// Recursively add item and all children and
+	// subchildren to the ignore list if meshpart
+	static AddToIgnoreListRecursive(instance: Instance): void {
+		if (instance.IsA("MeshPart")) {
+			print(instance);
+			this.rayIgnoreList.push(instance);
+		}
+
 		const descendants = instance.GetDescendants();
 		for (const descendant of descendants) {
-			this.rayIgnoreList.push(descendant);
-			RaycastModule.addModelDescendantsToIgnoreList(descendant);
+			RaycastModule.AddToIgnoreListRecursive(descendant);
 		}
 	}
 
-	static rayCast(
+	static Raycast(
 		spreadAmount: number,
 		startPosition: Vector3,
 		endPosition: Vector3,

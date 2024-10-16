@@ -19,6 +19,7 @@ import { ConnectionsModule } from "hyperdrive/shared/modules/core/ConnectionsMod
 import Remotes from "hyperdrive/shared/definitions/Remotes";
 import Roact from "@rbxts/roact";
 import { KeybindsModule } from "hyperdrive/shared/modules/core/KeybindsModule";
+import { RaycastModule } from "hyperdrive/shared/modules/core/RaycastModule";
 
 async function waitForInitiatedAndCharacter() {
 	const hyperdriveAsset = ReplicatedStorage.WaitForChild("hyperdriveAsset") as Model;
@@ -42,6 +43,7 @@ waitForInitiatedAndCharacter().then(() => {
 
 	const connectionModule = new ConnectionsModule();
 	const keybindModule = new KeybindsModule();
+	const racyastModule = new RaycastModule();
 
 	//Controller init
 

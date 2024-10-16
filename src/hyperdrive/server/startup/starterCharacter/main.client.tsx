@@ -30,7 +30,7 @@ waitForInitiated().then(() => {
 	const character = Players.LocalPlayer.Character;
 	// Add player character to raycast ignore list
 	if (character) {
-		RaycastModule.addModelDescendantsToIgnoreList(character);
+		RaycastModule.AddToIgnoreListRecursive(character);
 	}
 	const humanoid = character?.WaitForChild("Humanoid", 5) as Humanoid;
 
