@@ -5,7 +5,7 @@ import sys
 import shutil
 
 # Hardcoded GitHub repository URL
-GITHUB_REPO_URL = 'https://github.com/your/repo.git'
+GITHUB_REPO_URL = 'https://github.com/ru55e1l/roblox-ts_template.git'
 
 def clone_repo(repo_url, destination_folder):
     """Clones the GitHub repository to the specified folder."""
