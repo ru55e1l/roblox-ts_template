@@ -1,6 +1,5 @@
 import { Players, ReplicatedStorage, StarterPlayer, TextChatService } from "@rbxts/services";
 import { StartupRequest } from "hyperdrive/shared/definitions/StartupRequest";
-import { AssetHandler } from "hyperdrive/shared/modules/core/AssetHandler";
 import ServerEventRouter from "hyperdrive/shared/modules/core/ServerEventRouter";
 import { PlayerService } from "../services/PlayerService";
 
@@ -28,7 +27,7 @@ class Startup {
 
 		// Config init
 		// Initiate modules async
-		const modules = CreateClasses([() => new AssetHandler()]).await();
+		//		const modules = CreateClasses([() => new AssetHandler()]).await();
 
 		// Initiate serivces async
 		const services = CreateClasses([() => new PlayerService()]).await();
