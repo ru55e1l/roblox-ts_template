@@ -1,11 +1,3 @@
-/*
-HYPERDRIVE
--------------------------------------------------------------------------------------------------->
-Description:
-
-Server side Startup
--------------------------------------------------------------------------------------------------->*/
-
 import { Players, ReplicatedStorage, StarterPlayer, TextChatService } from "@rbxts/services";
 import { StartupRequest } from "hyperdrive/shared/definitions/StartupRequest";
 import { AssetHandler } from "hyperdrive/shared/modules/core/AssetHandler";
@@ -43,7 +35,7 @@ class Startup {
 
 		//const characterScriptsAsset = AssetHandler.findChildByPath(["CharacterScripts"]) as Folder;
 
-		const hyperdriveAsset = ReplicatedStorage.FindFirstChild("hyperdriveAsset") as Model;
+		const hyperdriveAsset = ReplicatedStorage.WaitForChild("hyperdriveAsset", 5) as Model;
 
 		const initiated = new Instance("BoolValue");
 		initiated.Name = "Initiated";

@@ -49,7 +49,11 @@ waitForInitiatedAndCharacter().then(() => {
 
 	// Screen init
 
-	const hyperdriveAsset = ReplicatedStorage.WaitForChild("hyperdriveAsset") as Model;
+	const hyperdriveAsset = ReplicatedStorage.WaitForChild("hyperdriveAsset", 5) as Model;
+
+	// Delete server side code
+	const serverFolder = hyperdriveAsset.WaitForChild("hyperdrive", 5)?.WaitForChild("server", 5) as Folder;
+	serverFolder.Destroy();
 
 	//Roact.unmount(loadingScreen);
 

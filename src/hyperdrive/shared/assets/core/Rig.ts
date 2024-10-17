@@ -2,7 +2,7 @@ import { BaseAsset, BaseAssetInput } from "../BaseAsset";
 
 class Rig extends BaseAsset {
 	public static AssetId: number = 110957102998908;
-	protected static loadedAsset?: Instance; // Private variable to store the loaded asset
+	protected static loadedAsset?: Instance;
 
 	static input: BaseAssetInput = {
 		AssetId: Rig.AssetId,
