@@ -43,7 +43,7 @@ class Startup {
 
 		//const characterScriptsAsset = AssetHandler.findChildByPath(["CharacterScripts"]) as Folder;
 
-		const hyperdriveAsset = ReplicatedStorage.FindFirstChild("hyperdriveAsset") as Model | undefined;
+		const hyperdriveAsset = ReplicatedStorage.FindFirstChild("hyperdriveAsset") as Model;
 
 		const initiated = new Instance("BoolValue");
 		initiated.Name = "Initiated";
