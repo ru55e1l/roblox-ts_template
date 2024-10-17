@@ -1,12 +1,3 @@
-/*
-HYPERDRIVE
--------------------------------------------------------------------------------------------------->
-Description:
-
-This service handles players, including functionality such as joining, class selection
--------------------------------------------------------------------------------------------------->*/
-
-import { HttpService, Players, Teams, TextChatService, TextService } from "@rbxts/services";
 import { IService } from "./IService";
 import Remotes from "hyperdrive/shared/definitions/Remotes";
 import RigHandler from "hyperdrive/shared/modules/core/RigHandler";
