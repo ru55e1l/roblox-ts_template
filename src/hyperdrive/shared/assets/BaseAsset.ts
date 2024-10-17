@@ -7,38 +7,53 @@ interface BaseAssetInput {
 // Used for storing assets
 // Pulls the asset down from Roblox by AssetId
 abstract class BaseAsset {
-	public static AssetId: number;
-	protected static loadedAsset?: Instance; // Private variable to store the loaded asset
+	// Static cache to store loaded assets by their AssetId
+	protected static loadedAssets: Map<number, Instance> = new Map();
 
 	constructor(input: BaseAssetInput) {
-		BaseAsset.AssetId = input.AssetId;
+		print(input);
 	}
 
-	public static Get(): Instance {
-		// If the asset is already loaded, return it
-		if (BaseAsset.loadedAsset !== undefined) {
-			return BaseAsset.loadedAsset;
+	public static Get(assetId: number, instanceType: keyof Instances): Instance {
+		// Check if the asset is already in the cache
+		const cachedAsset = BaseAsset.loadedAssets.get(assetId);
+		if (cachedAsset !== undefined) {
+			return cachedAsset;
 		}
 
-		// Load the asset from Roblox if it hasn't been loaded yet
-		const asset = InsertService.LoadAsset(BaseAsset.AssetId);
-
-		// Store the loaded asset in the private variable
-		BaseAsset.loadedAsset = asset;
-
-		// Parent the asset to the provided parent or default to ReplicatedStorage
-
+		// Load the asset from Roblox if it hasn't been cached yet
+		const asset = InsertService.LoadAsset(assetId);
 		asset.Parent = ReplicatedStorage;
+		print(asset);
+		const result = asset.FindFirstChildWhichIsA(instanceType);
 
-		return asset;
-	}
-
-	public static Clone(parent?: Instance) {
-		if (BaseAsset.loadedAsset === undefined) {
-			this.Get();
+		if (result === undefined) {
+			const msg = `${assetId} is undefined`;
+			throw msg;
 		}
 
-		return BaseAsset.loadedAsset?.Clone();
+		// Store the loaded asset in the cache
+		BaseAsset.loadedAssets.set(assetId, result);
+
+		// Parent the asset to ReplicatedStorage by default
+		// Cleanup ex parent model
+		result.Parent = ReplicatedStorage;
+		asset.Destroy();
+
+		return result;
+	}
+
+	public static Clone(assetId: number, instanceType: keyof Instances, parent?: Instance): Instance | undefined {
+		// Ensure the asset is loaded by calling Get
+		const asset = BaseAsset.Get(assetId, instanceType);
+
+		// Clone the asset and parent it if needed
+		const clonedAsset = asset.Clone();
+		if (parent) {
+			clonedAsset.Parent = parent;
+		}
+
+		return clonedAsset;
 	}
 }
 

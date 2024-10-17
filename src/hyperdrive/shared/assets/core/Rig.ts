@@ -1,11 +1,29 @@
 import { BaseAsset, BaseAssetInput } from "../BaseAsset";
 
 class Rig extends BaseAsset {
-	constructor(parent?: Instance) {
-		const assetInput: BaseAssetInput = {
-			AssetId: 110957102998908,
-		};
-		super(assetInput);
+	public static AssetId: number = 110957102998908;
+	protected static loadedAsset?: Instance; // Private variable to store the loaded asset
+
+	static input: BaseAssetInput = {
+		AssetId: Rig.AssetId,
+	};
+	constructor(input: BaseAssetInput) {
+		super(Rig.input);
+	}
+
+	public static Get(): Model {
+		const rigModel = super.Get(Rig.AssetId, "Model");
+
+		if (!rigModel.IsA("Model")) {
+			const errorMsg = "Rig model assetid is not a model";
+			throw errorMsg;
+		}
+
+		return rigModel;
+	}
+
+	public static Clone(): Model {
+		return BaseAsset.Clone(Rig.AssetId, "Model") as Model;
 	}
 }
 

@@ -27,7 +27,6 @@ class RaycastModule {
 	// subchildren to the ignore list if meshpart
 	static AddToIgnoreListRecursive(instance: Instance): void {
 		if (instance.IsA("MeshPart")) {
-			print(instance);
 			this.rayIgnoreList.push(instance);
 		}
 
