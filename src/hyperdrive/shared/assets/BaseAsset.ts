@@ -10,9 +10,7 @@ abstract class BaseAsset {
 	// Static cache to store loaded assets by their AssetId
 	protected static loadedAssets: Map<number, Instance> = new Map();
 
-	constructor(input: BaseAssetInput) {
-		print(input);
-	}
+	constructor(input: BaseAssetInput) {}
 
 	public static Get(assetId: number, instanceType: keyof Instances): Instance {
 		// Check if the asset is already in the cache
@@ -24,7 +22,6 @@ abstract class BaseAsset {
 		// Load the asset from Roblox if it hasn't been cached yet
 		const asset = InsertService.LoadAsset(assetId);
 		asset.Parent = ReplicatedStorage;
-		print(asset);
 		const result = asset.FindFirstChildWhichIsA(instanceType);
 
 		if (result === undefined) {
