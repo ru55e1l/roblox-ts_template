@@ -3,7 +3,6 @@ import re
 import subprocess
 import sys
 
-# Hardcoded GitHub repository URL
 GITHUB_REPO_URL = 'https://github.com/ru55e1l/roblox-ts_template.git'
 
 def clone_repo(repo_url, destination_folder):
@@ -21,7 +20,6 @@ def replace_in_file(file_path, old_value, new_value):
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
 
-        # Replace according to case rules
         updated_content = re.sub(
             old_value,
             lambda match: new_value.lower() if match.group(0).islower() else new_value,
@@ -37,12 +35,12 @@ def replace_in_file(file_path, old_value, new_value):
 def replace_in_directory(directory_path, old_value, new_value):
     """Recursively replaces occurrences of old_value in all files and folders under a directory."""
     for root, dirs, files in os.walk(directory_path, topdown=False):
-        # Replace in file contents
+        # Replace name in file contents
         for file in files:
             file_path = os.path.join(root, file)
             replace_in_file(file_path, old_value, new_value)
 
-        # Replace in folder names
+        # Replace name in folders
         for dir_name in dirs:
             dir_path = os.path.join(root, dir_name)
             if old_value in dir_name:
@@ -63,14 +61,12 @@ def main():
     folder_path = sys.argv[1]
     project_name = sys.argv[2]
 
-    # Ensure the destination folder exists
+    # Ensure destination exists
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-    # Clone the repository to the specified folder
     clone_repo(GITHUB_REPO_URL, folder_path)
 
-    # Replace all occurrences of "hyperdrive" with the project name in files and folder names
     print(f"Replacing 'hyperdrive' with '{project_name}' in {folder_path}")
     replace_in_directory(folder_path, "hyperdrive", project_name)
 
