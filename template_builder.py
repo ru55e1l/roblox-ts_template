@@ -44,7 +44,8 @@ def replace_in_directory(directory_path, old_value, new_value):
         for dir_name in dirs:
             dir_path = os.path.join(root, dir_name)
             if old_value in dir_name:
-                # Replace "hyperdrive" with new project name, considering case
+                # Replace holder project name with new project name
+                # Hyperdrive is origin project name
                 new_dir_name = dir_name.replace(old_value, new_value.lower() if old_value.islower() else new_value)
                 new_dir_path = os.path.join(root, new_dir_name)
                 try:
