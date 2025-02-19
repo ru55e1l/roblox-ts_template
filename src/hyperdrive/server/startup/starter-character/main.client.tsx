@@ -8,7 +8,7 @@ Client side character startup
 
 import Roact from "@rbxts/roact";
 import { ReplicatedStorage, Players, GamePassService, Workspace, StarterGui } from "@rbxts/services";
-import { RaycastModule } from "hyperdrive/shared/modules/core/RaycastModule";
+import { RaycastModule } from "hyperdrive/shared/modules/core/raycast.module";
 
 StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false);
 const playerGui = Players.LocalPlayer.WaitForChild("PlayerGui", 5);

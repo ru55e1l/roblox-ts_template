@@ -1,8 +1,7 @@
-import { IService } from "./IService";
-import Remotes from "hyperdrive/shared/definitions/Remotes";
+import Remotes from "hyperdrive/shared/definition/Remotes";
 import RigHandler from "hyperdrive/shared/modules/core/RigHandler";
 
-class PlayerService implements IService {
+class PlayerService {
 	constructor() {
 		Remotes.Server.Get("RequestRespawn").Connect((player: Player) => {
 			player.LoadCharacter();

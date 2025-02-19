@@ -11,15 +11,15 @@ import { ReplicatedFirst } from "@rbxts/services";
 import { RunService } from "@rbxts/services";
 
 // Modules
-import { ConnectionsModule } from "hyperdrive/shared/modules/core/ConnectionsModule";
+import { ConnectionsModule } from "hyperdrive/shared/modules/core/connection-module";
 
 // Controllers
 
 // Misc
-import Remotes from "hyperdrive/shared/definitions/Remotes";
+import Remotes from "hyperdrive/shared/definition/Remotes";
 import Roact from "@rbxts/roact";
-import { KeybindsModule } from "hyperdrive/shared/modules/core/KeybindsModule";
-import { RaycastModule } from "hyperdrive/shared/modules/core/RaycastModule";
+import { KeybindsModule } from "hyperdrive/shared/modules/core/keybind-module";
+import { RaycastModule } from "hyperdrive/shared/modules/core/raycast.module";
 
 async function waitForInitiatedAndCharacter() {
 	const hyperdriveAsset = ReplicatedStorage.WaitForChild("hyperdriveAsset") as Model;
